@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffe8ee">
+<title>Uma surpresa para Vitória ❤️</title>
+<style>
+  :root { --pink:#c83e68; --dark:#68243e; --pale:#fff5f6; --line:#f2b7c7; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:22px; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--dark);
+    background:radial-gradient(circle at top left,#ffe0e8,transparent 45%),
+               linear-gradient(135deg,#fff8f3,#ffe8ee);
+  }
+  .card {
+    width:min(100%,520px); background:rgba(255,255,255,.88); border:1px solid #f7ccd7;
+    border-radius:28px; padding:clamp(24px,6vw,40px); text-align:center;
+    box-shadow:0 18px 55px rgba(133,45,77,.12); position:relative; overflow:hidden;
+  }
+  .heart { font-size:38px; animation:float 2.6s ease-in-out infinite; }
+  h1 { font-family:Georgia,serif; font-weight:600; font-size:clamp(28px,7vw,40px); margin:12px 0; }
+  p { line-height:1.65; font-size:17px; }
+  .step { color:#a4516d; font-size:13px; letter-spacing:1.4px; text-transform:uppercase; font-weight:700; }
+  .progress { height:7px; background:#fbe0e7; border-radius:99px; margin:18px 0 25px; overflow:hidden; }
+  .bar { height:100%; width:33.3%; background:var(--pink); border-radius:99px; transition:width .35s; }
+  .choices { display:grid; gap:10px; margin:22px 0 8px; }
+  button {
+    font:inherit; font-weight:650; cursor:pointer; border:0; border-radius:999px;
+    padding:14px 18px; transition:transform .15s,filter .15s;
+  }
+  button:hover { filter:brightness(.98); transform:translateY(-1px); }
+  .primary { color:white; background:linear-gradient(120deg,#d54a73,#b92f5d); box-shadow:0 8px 18px #d54a7333; }
+  .option { color:var(--dark); background:#fff; border:1px solid var(--line); }
+  .option:focus-visible, button:focus-visible { outline:3px solid #df7c9a; outline-offset:3px; }
+  .small { font-size:13px; color:#9b6577; margin-top:22px; }
+  .hidden { display:none; }
+  .letter { background:#fff7f1; border:1px dashed #e6a0b3; padding:22px; border-radius:20px; margin:20px 0; }
+  .letter p { font-family:Georgia,serif; font-size:21px; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="heart" aria-hidden="true">💗</div>
+  <section id="screen0">
+    <div class="step">Uma surpresa feita com carinho</div>
+    <h1>Vitoria Falcão ❤️</h1>
+    <p>Preparei um pequeno jogo para você. Responda três perguntinhas e descubra a surpresa no final.</p>
+    <button class="primary" onclick="showScreen(1)">Começar a surpresa ✨</button>
+    <p class="small">Dica: responda com o coração 😉</p>
+  </section>
+  <section id="screen1" class="hidden">
+    <div class="step">Etapa 1 de 3</div><div class="progress"><div class="bar" style="width:33.3%"></div></div>
+    <h1>Uma lembrança 💭</h1>
+    <p>Qual dessas coisas deixa um dia comum mais especial?</p>
+    <div class="choices">
+      <button class="option" onclick="showScreen(2)">Uma conversa com quem amo</button>
+      <button class="option" onclick="showScreen(2)">Uma surpresa inesperada</button>
+      <button class="option" onclick="showScreen(2)">Um abraço bem apertado</button>
+    </div>
+  </section>
+  <section id="screen2" class="hidden">
+    <div class="step">Etapa 2 de 3</div><div class="progress"><div class="bar" style="width:66.6%"></div></div>
+    <h1>Agora me conta 💕</h1>
+    <p>O que combina mais com a nossa história?</p>
+    <div class="choices">
+      <button class="option" onclick="showScreen(3)">Carinho nas pequenas coisas</button>
+      <button class="option" onclick="showScreen(3)">Risadas sem motivo</button>
+      <button class="option" onclick="showScreen(3)">Criar novas lembranças juntos</button>
+    </div>
+  </section>
+  <section id="screen3" class="hidden">
+    <div class="step">Etapa 3 de 3</div><div class="progress"><div class="bar" style="width:100%"></div></div>
+    <h1>Última pergunta 🌷</h1>
+    <p>Você está pronta para descobrir o que eu queria te dizer?</p>
+    <button class="primary" onclick="showScreen(4)">Estou pronta! 💌</button>
+  </section>
+  <section id="screen4" class="hidden">
+    <div class="heart" aria-hidden="true">💖</div>
+    <div class="step">Sua surpresa chegou</div>
+    <h1>Para você, Vitória</h1>
+    <div class="letter">
+      <p>Meu amor, você é uma das melhores partes da minha vida. ❤️</p>
+      <p>Espero continuar criando lembranças lindas ao seu lado. Obrigado por ser você. Te amo! 💗</p>
+      <p style="font-size:16px;margin-bottom:0">Com todo o meu amor.</p>
+    </div>
+    <button class="primary" onclick="showScreen(0)">Ver de novo ❤️</button>
+    <p class="small">Feito especialmente para você.</p>
+  </section>
+</main>
+<script>
+function showScreen(n) {
+  for (let i=0; i<=4; i++) document.getElementById('screen'+i).classList.toggle('hidden', i!==n);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
